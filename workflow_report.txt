@@ -1,0 +1,27 @@
+- 1.Chuẩn bị dữ liệu
+	- Biến data thành các dạng biểu diễn số đa chiều
+	- chia data ra thành các training set và test set
+- 2.Tạo một Model
+	- Tạo 1 class Linear Regression sử dụng nn.Module
+	- Random trọng số và bias
+	- Dùng seed để cố định weight và bias qua mỗi lần chạy
+	- Tạo các dự đoán của model
+- 3.Train Model
+	- Traning loop:
+		1. Forward pass - Cho model đi qua các training data
+		2. Tính toán loss - Dự đoán của model sẽ so sánh với chỉ số gốc và chỉ ra sai số
+		3. Zero grad - Cho gradient = 0 sau mỗi vòng lặp
+		4. Lan truyền ngược - Tính toán gradient của hàm loss theo từng tham số trong mô hình
+		5. Optimizers
+- 4.Tạo dự đoán : sử dụng traning loop để tạo các dự đoán về các giá trị cần tìm
+- 5.Lưu và load lại model : Lưu lại model để lưu lại các giá trị đã train tránh phải train lại từ đầu
+
+# Một số hàm quan trọng
+- 'self.bias = nn.Parameter(torch.randn(1),requires_grad=True)' : Tạo các giá trị trọng số/nhiễu random
+- 'torch.manual_seed(42)' : Tạo giá trị cố định cho w/b qua mỗi lần chạy(giả ngẫu nhiên). Seed có thể là bất cứ số nào, thường là 42 do trong quyển *The Hitchhiker's Guide to the Galaxy* thì 42 có nghĩa là ý nghĩa cuộc sống
+- 'torch.inference_mode()' : Cho ra kết luận hoặc dự đoán từ model, thực hiện mà không cần cập nhật trọng số của mô hình
+- 'nn.L1Loss()' : Hàm mất mát
+- 'torch.optim.SGD(params=..., # Model cần thực hiện
+                            lr=0.001)' # Learning rate
+
+
