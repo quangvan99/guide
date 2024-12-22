@@ -1,0 +1,52 @@
+### **1. Thành Phần Của Một Mạng Nơ-ron**
+- **Lớp Đầu Vào (Input Layer):** Nhận dữ liệu đầu vào.
+- **Lớp Ẩn (Hidden Layers):** Thực hiện các tính toán thông qua trọng số, bias và hàm kích hoạt
+- **Lớp Đầu Ra (Output Layer):** Tạo ra dự đoán dựa trên bài toán (phân loại, hồi quy,...)
+- **Trọng Số và Bias:** Được điều chỉnh trong quá trình huấn luyện để giảm thiểu lỗi
+
+---
+
+### **2. Quá Trình Huấn Luyện**
+1. **Hàm Mất Mát (Loss Function):**
+   - Đo lường sai số giữa dự đoán và giá trị thực
+   - Ví dụ cho các bài toán khác nhau:
+     - Phân loại: CrossEntropyLoss, BCEWithLogitsLoss
+     - Hồi quy: MSELoss, L1Loss
+
+2. **Lan Truyền Ngược (Backward Propagation):**
+   - Tính toán gradient của hàm mất mát với các trọng số và bias bằng quy tắc chuỗi (chain rule)
+
+3. **Tối Ưu Hóa (Optimization):**
+   - Cập nhật trọng số và bias bằng một bộ tối ưu hóa (ReLU,SGD, Adam,..)
+   - Các bước:
+     1. `optimizer.zero_grad()`: Đặt lại gradient
+     2. `loss.backward()`: Tính gradient
+     3. `optimizer.step()`: Cập nhật trọng số
+
+---
+
+### **3. Hàm Kích Hoạt**
+- Giúp model học được tính phi tuyến
+- Các loại phổ biến:
+  - **ReLU:** Giải quyết vấn đề vanishing gradient nhưng có thể gây ra dead neurons
+  - **Sigmoid:** Đưa đầu ra về khoảng [0,1], phù hợp cho phân loại nhị phân
+  - **Tanh:** Đưa đầu ra về khoảng [-1,1]
+
+---
+
+### **4. Các loại mạng neutral**
+- **Mạng Kết Nối Đầy Đủ (Fully Connected Networks):** Tất cả các nút trong một lớp được kết nối với lớp tiếp theo
+- **Mạng Nơ-ron Tích Chập (Convolutional Neural Networks - CNNs):** Dành cho dữ liệu hình ảnh
+- **Mạng Nơ-ron Hồi Quy (Recurrent Neural Networks - RNNs):** Dành cho dữ liệu tuần tự
+
+### **5. Cross Entropy**
+- Là một hàm mất mát đặc biệt phù hợp cho các bài toán dạng phân loại, nó so sánh phân phối dự đáon và phân phối thực tế
+
+
+### **6. Data Loader**
+-  Dùng để quản lý và tương tác với dữ liệu
+- Các tính năng: 
+	1. Batching: Chia nhỏ dữ liệu ban đầu thành từng batch nhỏ để xử lí, giúp tăng tốc độ tính toán
+	2. Shuffling: Xáo trộn dữ liệu trước mỗi vòng epoch để tránh sự phụ thuộc vào thứ tự dl
+	3. Custom Collation: Định nghĩa lại cách gộp dữ liệu trong 1 batch bằng hàm `collate_fn`
+- Ví dụ: `dataloader = DataLoader(dataset, batch_size = 2, shuffle = True)`
