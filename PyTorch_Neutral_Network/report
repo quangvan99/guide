@@ -40,7 +40,19 @@
 - **Mạng Nơ-ron Hồi Quy (Recurrent Neural Networks - RNNs):** Dành cho dữ liệu tuần tự
 
 ### **5. Cross Entropy**
-- Là một hàm mất mát đặc biệt phù hợp cho các bài toán dạng phân loại, nó so sánh phân phối dự đáon và phân phối thực tế
+- Hàm mất mát cross-entropy đo lường hiệu suất của một mô hình phân loại có đầu ra là giá trị xác suất trong khoảng [0,1] Nó định lượng sự khác biệt giữa hai phân phối xác suất: phân phối thực tế và phân phối dự đoán (đầu ra của mô hình). Giá trị của nó tăng lên khi xác suất dự đoán lệch khỏi nhãn thực tế. Một mô hình hoàn hảo sẽ có loss bằng 0
+
+- Mục Tiêu: Giảm thiểu giá trị của hàm mất mát cross-entropy, đồng nghĩa với việc làm cho các xác suất dự đoán càng gần với nhãn thực tế càng tốt
+
+- Ứng Dụng: Chủ yếu được sử dụng trong các tác vụ phân loại nhị phân và phân loại đa lớp.
+	+Phân Loại Nhị Phân: - (y * log(p) + (1 - y) * log(1 - p)) Trong đó:
+		y là nhãn thực tế (0 hoặc 1)
+		p là xác suất dự đoán của mẫu thuộc về lớp 1
+	+Phân Loại Đa Lớp: - Σ (y_i * log(p_i)) Trong đó:
+		y_i là giá trị 1 nếu mẫu thuộc về lớp i và 0 nếu không
+		p_i là xác suất dự đoán của mẫu thuộc về lớp i
+
+- Ưu điểm: Có đạo hàm dễ dàng tính toán, thuận lợi cho việc tối ưu hóa bằng các thuật toán gradient descent, phạt nặng nếu model đưa ra sai số lớn
 
 
 ### **6. Data Loader**
