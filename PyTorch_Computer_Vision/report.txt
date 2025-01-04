@@ -1,0 +1,31 @@
+### 3 loại bài toán phổ biến trong thị giác máy tính
+1. Image Classification (focus)
+Sử dụng CNN với các mô hình phổ biến như ResNet,... 
+2. Object Detection
+3. Image Segmentation
+
+
+### Mạng nơ-ron tích chập (Convolutional Neutral Network - CNN)
+
+CNN bao gồm ba thành phần chính:
+
+- Lớp tích chập (Convolutional Layer):Là thành phần cốt lõi của CNN, thực hiện phép tích chập (convolution) giữa ảnh đầu vào và một bộ lọc (filter/kernel). Bộ lọc là một ma trận nhỏ, trượt qua ảnh đầu vào để trích xuất các đặc trưng (features) như cạnh, góc, hoặc kết cấu. Mỗi bộ lọc sẽ học một đặc trưng cụ thể, và nhiều bộ lọc có thể được sử dụng để học các đặc trưng khác nhau.
+
+- Lớp gộp (Pooling Layer):Giảm kích thước không gian của các đặc trưng được trích xuất từ lớp tích chập. Phổ biến nhất là gộp cực đại (Max Pooling), chọn giá trị lớn nhất trong mỗi vùng nhỏ của đặc trưng. Gộp trung bình (Average Pooling) cũng có thể được dùng, tính giá trị trung bình của mỗi vùng.
+
+- Lớp kết nối đầy đủ (Fully Connected Layer):Là lớp cuối cùng trong CNN, có nhiệm vụ phân loại hoặc đưa ra dự đoán. Tất cả các neuron trong lớp này được kết nối đầy đủ với nhau.
+
+Cách hoạt động:
+
+- Dữ liệu đầu vào được đưa qua lớp tích chập để trích xuất các đặc trưng cục bộ.
+- Sau đó, lớp gộp giảm độ phức tạp và kích thước của các đặc trưng, giúp giảm thiểu số lượng tham số.
+- Cuối cùng, lớp kết nối đầy đủ xử lý và ánh xạ các đặc trưng đã giảm xuống thành đầu ra (như một nhãn phân loại hoặc giá trị dự đoán).
+
+
+### Flatten
+- Là một lớp trong mạng nơ-ron, có td biến ảnh nhiều chiều thành một vector Tensor duy nhất, thường được sử dụng để chuyển đổi dữ liệu từ tầng CNN sang các tầng fully connected 
+- Cách hoạt động: Làm phẳng mọi chiều ngoại trừ batch size
+vd [4, 1, 28, 28] -> [4, 1*28*28] -> [4, 784]
+
+### Lưu ý về padding:
+- Nên bỏ qua viền hoặc cho padding = 1 để tránh xảy ra lỗi với size của batch
