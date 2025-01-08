@@ -27,5 +27,9 @@ Cách hoạt động:
 - Cách hoạt động: Làm phẳng mọi chiều ngoại trừ batch size
 vd [4, 1, 28, 28] -> [4, 1*28*28] -> [4, 784]
 
+### Confusion Matrix
+- Là một bảng biểu diễn số lượng dự đoán đúng và sai của mô hình phân loại, cho thấy giá trị thực tế và giá trị mà mô hình dự đoán giúp cải thiện mô hình
+- Một Confusion matrix gồm n hàng và n cột, mỗi hàng hiển thị giá trị thực tế và các cột hiển thị giá trị dự đoán. Trong đó đường chéo của ma trận sẽ là giá trị True, còn lại là giá trị False
+
 ### Lưu ý về padding:
 - Nên bỏ qua viền hoặc cho padding = 1 để tránh xảy ra lỗi với size của batch
