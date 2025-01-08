@@ -31,5 +31,21 @@ vd [4, 1, 28, 28] -> [4, 1*28*28] -> [4, 784]
 - Là một bảng biểu diễn số lượng dự đoán đúng và sai của mô hình phân loại, cho thấy giá trị thực tế và giá trị mà mô hình dự đoán giúp cải thiện mô hình
 - Một Confusion matrix gồm n hàng và n cột, mỗi hàng hiển thị giá trị thực tế và các cột hiển thị giá trị dự đoán. Trong đó đường chéo của ma trận sẽ là giá trị True, còn lại là giá trị False
 
+
+### Depthwise Separable Convolution
+Là một lớp tối ưu phổ biến trong CNN
+-So sánh:
+	+ Convolution: Nếu đầu vào có A kênh và bộ lọc có B kênh đầu ra, mỗi bộ lọc (kernel) sẽ có kích thước k*k*A và tổng tham số là k*k*A*B
+			Tính toán trên tất cả các kênh đầu vào -> Lượng tham số lớn
+	+ Depthwise: Tách quá trình convolution thành 2 bước
+			+ Depthwise Convolution: Mỗi kernel thực hiện tích chập chỉ trên 1 kênh đầu vào. Mỗi kênh có 1 kernel riêng kích thước k*k
+			+ Pointwise Convolution: Sử dụng các kernel 1x1 để kết hợp các kết quả từ các kênh khác nhau
+
+	Ví dụ: Giả sử đầu vào có A = 3 kênh, số lượng bộ lọc B = 64 kênh và bộ lọc kích thức 3x3, tham số nếu sử dụng convolution sẽ là 3x3x3x64=1728
+														      depthwise sẽ là (3x3x3)+(1x1x3x64)=192
+
+
+
+
 ### Lưu ý về padding:
 - Nên bỏ qua viền hoặc cho padding = 1 để tránh xảy ra lỗi với size của batch
