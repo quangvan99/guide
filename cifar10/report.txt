@@ -1,0 +1,36 @@
+1. Sau khi tiến hành import các thư viện cần thiết và chuẩn bị data, tiến hành transform cho dữ liệu
+	size = 224 : Là kích thước pixel tiêu chuẩn để xử dụng pretrained của nhiều loại model
+	toTensor() : Chuyển ảnh định dạng PIL hoặc numpy về thành tensor PyTorch, giá trị pixel về khoảng [0, 1]
+	normalize  : Chuẩn hóa giá trị từng color channels dựa trên giá trị tb và độ lệch chuẩn của ImageNet
+
+
+2. Khởi tạo các datasets và DataLoader
+	datasets.ImageFolder : tải dl cifar10
+	DataLoader : Chia batch cho tập dữ liệu 
+
+
+3. Load model resnet18 có sẵn từ torchvision.models
+	pretrained=True : Dùng dữ liệu tiền tập huấn
+	thay thế tầng đầu ra cuối cùng của lớp fully connected layer từ 1000 thành 10 để phù hợp tập dữ liệu đang dùng gồm 10 classes
+
+
+4. Tạo hàm loss, optimizer, hàm tính toán độ chính xác
+
+5. Training loop
+	Đặt model vào chế độ huấn luyện với .train()
+	zero_grad() đặt gradient cũ về 0 trước khi tính grad mới
+	loss_fn	mức sai lệch giữa dự đoán của model và nhãn thực tế
+	loss.backward() tính grad của loss
+	optimizer.step() cập nhật các tham số w và b dựa theo grad và lr
+
+6. Đánh giá model
+	model.eval() Vào chế độ đánh giá, tắt dropout và batchnorm
+	torch.no_grad() tắt gradient
+	
+	test loop
+		
+	
+​
+7. Confusion Matrix
+	- Nối các tensor của y_preds và y_true thành 1 tensor duy nhất
+	- Gọi hàm ConfusionMatrix
